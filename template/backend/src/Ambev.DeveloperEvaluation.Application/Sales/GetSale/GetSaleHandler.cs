@@ -25,22 +25,22 @@ public class GetSaleHandler : IRequestHandler<GetSaleCommand, GetSaleResult>
     }
 
     /// <summary>
-    /// Handles the GetSaleCommand request
+    /// Handles the GetSaleCommand command
     /// </summary>
-    /// <param name="request">The GetSale command</param>
+    /// <param name="command">The GetSale command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The sale details if found</returns>
-    public async Task<GetSaleResult> Handle(GetSaleCommand request, CancellationToken cancellationToken)
+    public async Task<GetSaleResult> Handle(GetSaleCommand command, CancellationToken cancellationToken)
     {
         var validator = new GetSaleValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        var validationResult = await validator.ValidateAsync(command, cancellationToken);
 
         if (!validationResult.IsValid)
             throw new ValidationException(validationResult.Errors);
      
-        var sale = await _saleRepository.GetByIdAsync(request.Id, cancellationToken);
+        var sale = await _saleRepository.GetByIdAsync(command.Id, cancellationToken);
         if(sale is null)
-            throw new KeyNotFoundException($"Sale with ID {request.Id} not found");
+            throw new KeyNotFoundException($"Sale with ID {command.Id} not found");
         
         return _mapper.Map<GetSaleResult>(sale);
     }

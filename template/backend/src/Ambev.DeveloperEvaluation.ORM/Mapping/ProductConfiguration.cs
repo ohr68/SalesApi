@@ -13,7 +13,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
         
-        builder.Property(p => p.Name)
+        builder.Property(p => p.Title)
             .HasColumnType("varchar(100)")
             .IsRequired();
         
@@ -21,8 +21,15 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasColumnType("varchar(300)")
             .IsRequired();
         
-        builder.Property(p => p.UnitPrice)
+        builder.Property(p => p.Price)
             .HasColumnType("decimal(18,2)")
             .IsRequired();
+
+        builder.Property(p => p.Category)
+            .HasColumnType("varchar(150")
+            .IsRequired();
+
+        builder.Property(p => p.Image)
+            .HasColumnType("varbinary(max)");
     }
 }

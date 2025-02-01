@@ -68,7 +68,7 @@ public class SaleItem : BaseEntity
 
         var engine = new DiscountRuleEngine(discountRules!);
 
-        Discounts += (saleItem.Product!.UnitPrice * engine.CalculateDiscountPercentage(saleItem));
+        Discounts += (saleItem.Product!.Price * engine.CalculateDiscountPercentage(saleItem));
     }
     
     /// <summary>

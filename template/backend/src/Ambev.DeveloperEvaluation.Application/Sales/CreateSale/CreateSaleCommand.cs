@@ -22,22 +22,22 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 public class CreateSaleCommand : IRequest<CreateSaleResult>
 {
     /// <summary>
-    /// Gets the Customer the sale was made to.
+    /// Gets or sets the Customer the sale was made to.
     /// </summary>
     public string Customer { get; set; } = String.Empty;
     
     /// <summary>
-    /// Gets the branch that made the sale.
+    /// Gets or sets the branch that made the sale.
     /// </summary>
     public string Branch { get; set; } = String.Empty;
     
     /// <summary>
-    /// Gets whether the sale was canceled or not.
+    /// Gets or sets whether the sale was canceled or not.
     /// </summary>
     public bool Cancelled { get; set; }
     
     /// <summary>
-    /// Gets the sale's items.
+    /// Gets or sets the sale's items.
     /// Used as a navigation property on entity configuration.
     /// </summary>
     public ICollection<CreateSaleItemInputModel>? Items { get; set; }

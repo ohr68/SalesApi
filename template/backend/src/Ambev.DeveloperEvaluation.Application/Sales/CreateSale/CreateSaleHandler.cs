@@ -46,6 +46,8 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
         
         var sale = _mapper.Map<Sale>(command);
         
+        
+        
         var createdSale = await _saleRepository.CreateAsync(sale, cancellationToken);
 
         await _queueService.Publish(_mapper.Map<SaleCreated>(createdSale), cancellationToken);

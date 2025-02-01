@@ -31,33 +31,33 @@ public class CancelSaleItemHandler : IRequestHandler<CancelSaleItemCommand, Canc
     }
 
     /// <summary>
-    /// Handles the CancelSaleItemCommand request
+    /// Handles the CancelSaleItemCommand command
     /// </summary>
-    /// <param name="request">The CancelSaleItem command</param>
+    /// <param name="command">The CancelSaleItem command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The result of the cancel operation</returns>
-    public async Task<CancelSaleItemResponse> Handle(CancelSaleItemCommand request, CancellationToken cancellationToken)
+    public async Task<CancelSaleItemResponse> Handle(CancelSaleItemCommand command, CancellationToken cancellationToken)
     {
         var validator = new CancelSaleItemValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        var validationResult = await validator.ValidateAsync(command, cancellationToken);
 
         if (!validationResult.IsValid)
             throw new ValidationException(validationResult.Errors);
 
-        var sale = await _saleRepository.GetByIdAsync(request.SaleId, cancellationToken);
+        var sale = await _saleRepository.GetByIdAsync(command.SaleId, cancellationToken);
 
         if (sale is null)
-            throw new KeyNotFoundException($"Sale with ID {request.SaleId} not found");
+            throw new KeyNotFoundException($"Sale with ID {command.SaleId} not found");
 
         SaleItem? item = null;
-        foreach (var saleItem in sale.Items!.Where(si => si.Id == request.ItemId))
+        foreach (var saleItem in sale.Items!.Where(si => si.Id == command.ItemId))
         {
             saleItem.Cancel();
             item = saleItem;
         }
 
         if (item is null)
-            throw new KeyNotFoundException($"Item with ID {request.ItemId} not found");
+            throw new KeyNotFoundException($"Item with ID {command.ItemId} not found");
 
         var success = await _saleRepository.UpdateAsync(sale, cancellationToken);
 

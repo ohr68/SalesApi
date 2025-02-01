@@ -5,8 +5,12 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 public class GetSaleResult
 {
     /// <summary>
+    /// Gets the sale's unique id.
+    /// </summary>
+    public Guid Id { get; set; }
+    
+    /// <summary>
     /// Gets the sale's number.
-    /// Generated when sale is created and is unique.
     /// </summary>
     public int Number { get; set; }
     

@@ -30,23 +30,23 @@ public class CancelSaleHandler : IRequestHandler<CancelSaleCommand, CancelSaleRe
     }
 
     /// <summary>
-    /// Handles the CancelSaleCommand request
+    /// Handles the CancelSaleCommand command
     /// </summary>
-    /// <param name="request">The CancelSale command</param>
+    /// <param name="command">The CancelSale command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The result of the cancel operation</returns>
-    public async Task<CancelSaleResponse> Handle(CancelSaleCommand request, CancellationToken cancellationToken)
+    public async Task<CancelSaleResponse> Handle(CancelSaleCommand command, CancellationToken cancellationToken)
     {
         var validator = new CancelSaleValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        var validationResult = await validator.ValidateAsync(command, cancellationToken);
 
         if (!validationResult.IsValid)
             throw new ValidationException(validationResult.Errors);
 
-        var sale = await _saleRepository.GetByIdAsync(request.Id, cancellationToken);
+        var sale = await _saleRepository.GetByIdAsync(command.Id, cancellationToken);
 
         if (sale is null)
-            throw new KeyNotFoundException($"Sale with ID {request.Id} not found");
+            throw new KeyNotFoundException($"Sale with ID {command.Id} not found");
 
         sale.Cancel();
         var success = await _saleRepository.UpdateAsync(sale, cancellationToken);

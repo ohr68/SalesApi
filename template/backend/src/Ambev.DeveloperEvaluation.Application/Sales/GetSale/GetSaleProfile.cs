@@ -16,6 +16,6 @@ public class GetSaleProfile : Profile
     {
         CreateMap<Sale, GetSaleResult>();
         CreateMap<SaleItem, SaleItemViewModel>()
-            .ForMember(dest => dest.Product, opt => opt.MapFrom(src => src.Product!.Name));
+            .ForMember(dest => dest.Product, opt => opt.MapFrom(src => src.Product!.Title));
     }
 }
