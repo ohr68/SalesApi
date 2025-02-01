@@ -8,7 +8,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSale;
 public class CancelSaleCommand : IRequest<CancelSaleResponse>
 {
     /// <summary>
-    /// The unique identifier of the sale to delete
+    /// The unique identifier of the sale to cancel
     /// </summary>
     public Guid Id { get; }
 

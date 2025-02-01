@@ -1,13 +1,17 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Common;
+﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 
-namespace Ambev.DeveloperEvaluation.Domain.Entities;
+namespace Ambev.DeveloperEvaluation.Domain.Messaging.Commands;
 
 /// <summary>
-/// Represents a sale in the system with items.
-/// This entity follows domain-driven design principles and includes business rules validation.
+/// Message model for SaleCreated event
 /// </summary>
-public class Sale : BaseEntity
+public class SaleCreated : Message
 {
+    /// <summary>
+    ///  Gets the unique identifier of the sale.
+    /// </summary>
+    public Guid Id { get; private set; }
+    
     /// <summary>
     /// Gets the sale's number.
     /// Generated when sale is created and is unique.
@@ -47,23 +51,6 @@ public class Sale : BaseEntity
     
     /// <summary>
     /// Gets the sale's items.
-    /// Used as a navigation property on entity configuration.
     /// </summary>
-    public virtual ICollection<SaleItem>? Items { get; set; }
-
-    /// <summary>
-    /// Initializes a new instance of the Sale class.
-    /// </summary>
-    public Sale()
-    {
-        MadeOn = DateTime.UtcNow;
-    }
-    
-    /// <summary>
-    /// Cancels the sale
-    /// </summary>
-    public void Cancel()
-    {
-        Cancelled = true;
-    }
+    public ICollection<SaleItem>? Items { get; set; }
 }

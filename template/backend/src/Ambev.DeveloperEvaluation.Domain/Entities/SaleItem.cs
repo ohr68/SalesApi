@@ -70,4 +70,12 @@ public class SaleItem : BaseEntity
 
         Discounts += (saleItem.Product!.UnitPrice * engine.CalculateDiscountPercentage(saleItem));
     }
+    
+    /// <summary>
+    /// Cancels the item
+    /// </summary>
+    public void Cancel()
+    {
+        Cancelled = true;
+    }
 }

@@ -37,8 +37,6 @@ public class Program
                 )
             );
 
-            builder.Services.AddExceptionHandler<CustomExceptionHandler>();
-            
             builder.Services.AddJwtAuthentication(builder.Configuration);
 
             builder.RegisterDependencies();
