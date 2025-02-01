@@ -21,6 +21,11 @@ public class CreateSaleItemInputModel
     public int Quantity { get; set; }
     
     /// <summary>
+    /// Gets the id of the product which the item represents.
+    /// </summary>
+    public Guid ProductId { get; set; }
+    
+    /// <summary>
     /// Gets whether the item was canceled or not.
     /// </summary>
     public bool Cancelled { get; set; }

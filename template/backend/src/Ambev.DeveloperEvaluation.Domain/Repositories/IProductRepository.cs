@@ -22,6 +22,14 @@ public interface IProductRepository
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The product if found, null otherwise</returns>
     Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    
+    /// <summary>
+    /// Retrieves a list of products by their unique identifiers
+    /// </summary>
+    /// <param name="ids">The unique identifiers list of the products</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The products list if found, null otherwise</returns>
+    Task<IEnumerable<Guid>?> GetManyByIdAsync(IEnumerable<Guid> ids, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Updates a product from the repository

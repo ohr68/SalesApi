@@ -19,7 +19,7 @@ public class ProductRepository : IProductRepository
     {
         _context = context;
     }
-    
+
     /// <summary>
     /// Creates a new product in the repository
     /// </summary>
@@ -41,7 +41,19 @@ public class ProductRepository : IProductRepository
     /// <returns>The product if found, null otherwise</returns>
     public async Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-       return await _context.Products.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+        return await _context.Products.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+    }
+
+    /// <summary>
+    /// Retrieves a list of products by their unique identifiers
+    /// </summary>
+    /// <param name="ids">The unique identifiers list of the products</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The products list if found, null otherwise</returns>
+    public async Task<IEnumerable<Guid>?> GetManyByIdAsync(IEnumerable<Guid> ids,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.Products.Where(p => ids.Contains(p.Id)).Select(p => p.Id).ToListAsync(cancellationToken);
     }
 
     /// <summary>
@@ -53,11 +65,11 @@ public class ProductRepository : IProductRepository
     public async Task<bool> UpdateAsync(Product product, CancellationToken cancellationToken = default)
     {
         product.Updated();
-       _context.Entry(product).State = EntityState.Modified;
-       
-       var rowsAffected = await _context.SaveChangesAsync(cancellationToken);
+        _context.Entry(product).State = EntityState.Modified;
 
-       return rowsAffected > 0;
+        var rowsAffected = await _context.SaveChangesAsync(cancellationToken);
+
+        return rowsAffected > 0;
     }
 
     /// <summary>
@@ -71,7 +83,7 @@ public class ProductRepository : IProductRepository
         var product = await GetByIdAsync(id, cancellationToken);
         if (product is null)
             return false;
-        
+
         _context.Products.Remove(product);
         await _context.SaveChangesAsync(cancellationToken);
         return true;
