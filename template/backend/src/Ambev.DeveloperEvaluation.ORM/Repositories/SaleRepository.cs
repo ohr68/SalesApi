@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories;
 
-
 /// <summary>
 /// Implementation of ISaleRepository using Entity Framework Core
 /// </summary>
@@ -46,19 +45,17 @@ public class SaleRepository : ISaleRepository
     }
 
     /// <summary>
-    /// Deletes a sale from the database
+    /// Updates a sale from the repository
     /// </summary>
-    /// <param name="id">The unique identifier of the sale to delete</param>
+    /// <param name="sale">The sale to update</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>True if the sale was deleted, false if not found</returns>
-    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    /// <returns>True if the sale was updated, false if no rows affected</returns>
+    public async Task<bool> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
     {
-        var sale = await GetByIdAsync(id, cancellationToken);
-        if (sale == null)
-            return false;
+        _context.Entry(sale).State = EntityState.Modified;
 
-        _context.Sales.Remove(sale);
-        await _context.SaveChangesAsync(cancellationToken);
-        return true;
+        var rowsAffected = await _context.SaveChangesAsync(cancellationToken);
+
+        return rowsAffected > 0;
     }
 }

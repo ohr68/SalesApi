@@ -47,7 +47,7 @@ public class SaleItem : BaseEntity
     public virtual Sale? Sale { get; set; }
 
     /// <summary>
-    /// Gets the sale which the item belongs.
+    /// Gets the product which the item represents.
     /// Used as a navigation property on entity configuration.
     /// </summary>
     public virtual Product? Product { get; set; }

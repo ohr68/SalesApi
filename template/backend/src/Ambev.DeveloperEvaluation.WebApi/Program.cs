@@ -4,6 +4,7 @@ using Ambev.DeveloperEvaluation.Common.Logging;
 using Ambev.DeveloperEvaluation.Common.Security;
 using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.IoC;
+using Ambev.DeveloperEvaluation.Messaging.Extensions;
 using Ambev.DeveloperEvaluation.ORM;
 using Ambev.DeveloperEvaluation.WebApi.Middleware;
 using MediatR;
@@ -36,6 +37,8 @@ public class Program
                 )
             );
 
+            builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+            
             builder.Services.AddJwtAuthentication(builder.Configuration);
 
             builder.RegisterDependencies();
@@ -50,6 +53,8 @@ public class Program
                 );
             });
 
+            builder.Services.AddMessaging(builder.Configuration);
+            
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             var app = builder.Build();

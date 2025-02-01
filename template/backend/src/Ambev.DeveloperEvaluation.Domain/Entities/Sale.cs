@@ -21,6 +21,11 @@ public class Sale : BaseEntity
     public DateTime MadeOn { get; set; }
     
     /// <summary>
+    /// Gets the date and time of the last update to the user's information.
+    /// </summary>
+    public DateTime? UpdatedAt { get; set; }
+    
+    /// <summary>
     /// Gets the Customer the sale was made to.
     /// </summary>
     public string Customer { get; set; } = String.Empty;
@@ -45,4 +50,17 @@ public class Sale : BaseEntity
     /// Used as a navigation property on entity configuration.
     /// </summary>
     public virtual ICollection<SaleItem>? Items { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the Sale class.
+    /// </summary>
+    public Sale()
+    {
+        MadeOn = DateTime.UtcNow;
+    }
+    
+    public void Cancel()
+    {
+        Cancelled = true;
+    }
 }
