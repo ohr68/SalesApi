@@ -1,7 +1,10 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities;
+﻿using Ambev.DeveloperEvaluation.Application.Sales.Models.InputModels.CreateSaleItem;
+using Ambev.DeveloperEvaluation.Domain.Entities;
+using Ambev.DeveloperEvaluation.Domain.Exceptions;
 using Ambev.DeveloperEvaluation.Domain.Messaging;
 using Ambev.DeveloperEvaluation.Domain.Messaging.Commands;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
+using Ambev.DeveloperEvaluation.Domain.Validation;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
@@ -49,9 +52,19 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
             throw new ValidationException(validationResult.Errors);
 
         await ValidateProducts(command, cancellationToken);
-
+        
         var sale = _mapper.Map<Sale>(command);
-
+        
+        foreach (var saleItem in sale.Items!)
+        {
+            var itemValidationResult = saleItem.Validate();
+            
+            if (!itemValidationResult.IsValid)
+                throw new ValidationResultException(itemValidationResult);
+            
+            saleItem.CalculateDiscountPercentage();
+        }
+        
         var createdSale = await _saleRepository.CreateAsync(sale, cancellationToken);
 
         await _queueService.Publish(_mapper.Map<SaleCreated>(createdSale), cancellationToken);

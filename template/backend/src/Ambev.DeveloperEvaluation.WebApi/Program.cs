@@ -30,7 +30,7 @@ public class Program
             builder.Services.AddEndpointsApiExplorer();
 
             builder.AddBasicHealthChecks();
-            
+
             builder.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -66,11 +66,13 @@ public class Program
             });
 
             builder.Services.AddMessaging(builder.Configuration);
-            
+
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             var app = builder.Build();
+
             app.UseMiddleware<ValidationExceptionMiddleware>();
+            app.UseMiddleware<ValidationResultExceptionMiddleware>();
 
             if (app.Environment.IsDevelopment())
             {
