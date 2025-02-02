@@ -1,16 +1,11 @@
-﻿using FluentValidation;
+﻿using Ambev.DeveloperEvaluation.Domain.Entities;
+using FluentValidation;
 
-namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
+namespace Ambev.DeveloperEvaluation.Domain.Validation;
 
-/// <summary>
-/// Validator for CreateProductCommand
-/// </summary>
-public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
+public class ProductValidator : AbstractValidator<Product>
 {
-    /// <summary>
-    /// Initializes validation rules for CreateProductCommand
-    /// </summary>
-    public CreateProductCommandValidator()
+    public ProductValidator()
     {
         RuleFor(p => p.Title)
             .NotEmpty()
@@ -28,7 +23,7 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
             .NotEmpty()
             .WithMessage("Price is required")
             .GreaterThan(0)
-            .WithMessage("Price must be greater than 0");;
+            .WithMessage("Price must be greater than 0");
 
         RuleFor(p => p.Category)
             .NotEmpty()

@@ -31,7 +31,7 @@ public static class SaleTestData
 
     /// <summary>
     /// Generates a valid Sale entity with randomized data.
-    /// The generated user will have all properties populated with valid values
+    /// The generated sale will have all properties populated with valid values
     /// that meet the system's validation requirements.
     /// </summary>
     /// <returns>A valid Sale entity with randomly generated data.</returns>

@@ -82,7 +82,7 @@ public class SaleItem : BaseEntity
     }
     
     /// <summary>
-    /// Performs validation of the user entity using the UserValidator rules.
+    /// Performs validation of the sale item entity using the SaleItemValidator rules.
     /// </summary>
     /// <returns>
     /// A <see cref="ValidationResultDetail"/> containing:

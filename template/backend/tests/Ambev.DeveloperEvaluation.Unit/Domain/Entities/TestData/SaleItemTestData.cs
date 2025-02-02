@@ -14,11 +14,9 @@ public static class SaleItemTestData
     /// Configures the Faker to generate valid SaleItem entities.
     /// The generated users will have valid:
     /// - Quantity (using Random int)
-    /// - TotalAmount (using Finance Amount)
     /// </summary>
     private static readonly Faker<SaleItem> SaleItemFaker = new Faker<SaleItem>()
-        .RuleFor(si => si.Quantity, f => f.Random.Int(1, 20))
-        .RuleFor(si => si.TotalAmount, f => f.Finance.Amount());
+        .RuleFor(si => si.Quantity, f => f.Random.Int(1, 20));
     
     /// <summary>
     /// Configures the Faker to generate valid SaleItem entities.
@@ -27,8 +25,7 @@ public static class SaleItemTestData
     /// - TotalAmount (using Finance Amount)
     /// </summary>
     private static readonly Faker<SaleItem> SaleItemMinQuantityFaker = new Faker<SaleItem>()
-        .RuleFor(si => si.Quantity, f => f.Random.Int(4, 9))
-        .RuleFor(si => si.TotalAmount, f => f.Finance.Amount());
+        .RuleFor(si => si.Quantity, f => f.Random.Int(4, 9));
 
     /// <summary>
     /// Configures the Faker to generate valid SaleItem entities.
@@ -37,8 +34,7 @@ public static class SaleItemTestData
     /// - TotalAmount (using Finance Amount)
     /// </summary>
     private static readonly Faker<SaleItem> SaleItemMaxQuantityFaker = new Faker<SaleItem>()
-        .RuleFor(si => si.Quantity, f => f.Random.Int(10, 20))
-        .RuleFor(si => si.TotalAmount, f => f.Finance.Amount());
+        .RuleFor(si => si.Quantity, f => f.Random.Int(10, 20));
     
     /// <summary>
     /// Generates a valid SaleItem entity with randomized data.
@@ -110,5 +106,23 @@ public static class SaleItemTestData
         };
 
         return saleItem;
+    }
+
+    /// <summary>
+    /// Generates an invalid quantity for testing negative scenarios.
+    /// </summary>
+    /// <returns>An invalid quantity.</returns>
+    public static int GenerateInvalidMinQuantity()
+    {
+        return 0;
+    }
+    
+    /// <summary>
+    /// Generates an invalid quantity for testing negative scenarios.
+    /// </summary>
+    /// <returns>An invalid quantity.</returns>
+    public static int GenerateInvalidMaxQuantity()
+    {
+        return 20;
     }
 }
