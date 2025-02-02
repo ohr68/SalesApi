@@ -1,6 +1,6 @@
-﻿namespace Ambev.DeveloperEvaluation.Application.Models.ViewModels;
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.Models.Responses;
 
-public class SaleItemViewModel
+public class SaleItemResponse
 {
     /// <summary>
     /// Gets the quantity sold of the item.
@@ -37,5 +37,4 @@ public class SaleItemViewModel
     /// Used as a navigation property on entity configuration.
     /// </summary>
     public string Product { get; set; } = string.Empty;
-
 }

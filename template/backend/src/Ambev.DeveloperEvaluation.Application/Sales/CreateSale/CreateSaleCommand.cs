@@ -1,5 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Application.Models.InputModels;
-using Ambev.DeveloperEvaluation.Application.Models.InputModels.CreateSaleItem;
+﻿using Ambev.DeveloperEvaluation.Application.Sales.Models.InputModels.CreateSaleItem;
 using Ambev.DeveloperEvaluation.Common.Validation;
 using MediatR;
 

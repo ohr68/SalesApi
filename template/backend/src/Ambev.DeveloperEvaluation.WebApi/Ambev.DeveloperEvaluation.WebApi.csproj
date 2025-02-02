@@ -8,6 +8,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
     <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,10 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Sales\CancelSaleItem\" />
-    <Folder Include="Features\Sales\CancelSale\" />
-    <Folder Include="Features\Sales\CreateSale\" />
-    <Folder Include="Features\Sales\GetSale\" />
     <Folder Include="Features\Users\GetUser\" />
     <Folder Include="Features\Users\DeleteUser\" />
     <Folder Include="Features\Users\ListUsers\" />

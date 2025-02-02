@@ -1,9 +1,9 @@
 ﻿namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSaleItem;
 
 /// <summary>
-/// Response model for CancelSaleItem operation
+/// Result model for CancelSaleItem operation
 /// </summary>
-public class CancelSaleItemResponse(bool success)
+public class CancelSaleItemResult(bool success)
 {
     /// <summary>
     /// Indicates whether the cancellation was successful

@@ -1,12 +1,12 @@
-﻿namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSale;
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CancelSale;
 
 /// <summary>
 /// Response model for CancelSale operation
 /// </summary>
-public class CancelSaleResponse(bool success)
+public class CancelSaleResponse
 {
     /// <summary>
     /// Indicates whether the cancellation was successful
     /// </summary>
-    public bool Success { get; set; } = success;
+    public bool Success { get; set; }
 }

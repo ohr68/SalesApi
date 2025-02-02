@@ -5,17 +5,17 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSaleItem;
 /// <summary>
 /// Command for cancel a sale's item
 /// </summary>
-public class CancelSaleItemCommand : IRequest<CancelSaleItemResponse>
+public class CancelSaleItemCommand : IRequest<CancelSaleItemResult>
 {
     /// <summary>
     /// The unique identifier of the sale
     /// </summary>
-    public Guid SaleId { get; }
+    public Guid SaleId { get; set; }
     
     /// <summary>
     /// The unique identifier of the item to cancel
     /// </summary>
-    public Guid ItemId { get; }
+    public Guid ItemId { get; set;  }
     
     /// <summary>
     /// Initializes a new instance of CancelSaleCommand

@@ -1,4 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Application.Models.ViewModels;
+﻿using Ambev.DeveloperEvaluation.Application.Sales.Models.ViewModels;
 using Ambev.DeveloperEvaluation.Domain.Entities;
 using AutoMapper;
 

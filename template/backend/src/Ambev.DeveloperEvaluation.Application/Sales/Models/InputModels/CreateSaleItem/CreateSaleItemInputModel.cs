@@ -1,8 +1,7 @@
-﻿using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
-using Ambev.DeveloperEvaluation.Common.Validation;
+﻿using Ambev.DeveloperEvaluation.Common.Validation;
 using FluentValidation;
 
-namespace Ambev.DeveloperEvaluation.Application.Models.InputModels.CreateSaleItem;
+namespace Ambev.DeveloperEvaluation.Application.Sales.Models.InputModels.CreateSaleItem;
 
 /// <summary>
 /// InputModel for creating a new sale's item.
@@ -35,7 +34,21 @@ public class CreateSaleItemInputModel
     /// </summary>
     public decimal UnitPrice { get; set; }
     
-    
+    /// <summary>
+    /// Performs validation of the user entity using the CreateSaleItemInputModelValidator rules.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="ValidationResultDetail"/> containing:
+    /// - IsValid: Indicates whether all validation rules passed
+    /// - Errors: Collection of validation errors if any rules failed
+    /// </returns>
+    /// <remarks>
+    /// <listheader>The validation includes checking:</listheader>
+    /// <list type="bullet">Quantity</list>
+    /// <list type="bullet">Unit price</list>
+    /// <list type="bullet">Product id</list>
+    /// 
+    /// </remarks>
     public ValidationResultDetail Validate()
     {
         var validator = new CreateSaleItemInputModelValidator();

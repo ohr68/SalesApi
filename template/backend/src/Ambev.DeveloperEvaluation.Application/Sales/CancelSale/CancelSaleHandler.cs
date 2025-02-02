@@ -10,7 +10,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSale;
 /// <summary>
 /// Handler for processing CancelSaleCommand requests
 /// </summary>
-public class CancelSaleHandler : IRequestHandler<CancelSaleCommand, CancelSaleResponse>
+public class CancelSaleHandler : IRequestHandler<CancelSaleCommand, CancelSaleResult>
 {
     private readonly ISaleRepository _saleRepository;
     private readonly IQueueService _queueService;
@@ -35,7 +35,7 @@ public class CancelSaleHandler : IRequestHandler<CancelSaleCommand, CancelSaleRe
     /// <param name="command">The CancelSale command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The result of the cancel operation</returns>
-    public async Task<CancelSaleResponse> Handle(CancelSaleCommand command, CancellationToken cancellationToken)
+    public async Task<CancelSaleResult> Handle(CancelSaleCommand command, CancellationToken cancellationToken)
     {
         var validator = new CancelSaleValidator();
         var validationResult = await validator.ValidateAsync(command, cancellationToken);
@@ -53,6 +53,6 @@ public class CancelSaleHandler : IRequestHandler<CancelSaleCommand, CancelSaleRe
 
         await _queueService.Publish(_mapper.Map<SaleCancelled>(sale), cancellationToken);
         
-        return new CancelSaleResponse(success);
+        return new CancelSaleResult(success);
     }
 }

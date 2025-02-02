@@ -1,8 +1,11 @@
-﻿using Ambev.DeveloperEvaluation.Application.Sales.Models.ViewModels;
+﻿using Ambev.DeveloperEvaluation.WebApi.Features.Sales.Models.Responses;
 
-namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
 
-public class GetSaleResult
+/// <summary>
+/// API response model for CreateSale operation
+/// </summary>
+public class CreateSaleResponse
 {
     /// <summary>
     /// Gets the sale's unique id.
@@ -43,5 +46,5 @@ public class GetSaleResult
     /// <summary>
     /// Gets the sale's items.
     /// </summary>
-    public virtual ICollection<SaleItemViewModel>? Items { get; set; }
+    public virtual ICollection<SaleItemResponse>? Items { get; set; }
 }
