@@ -24,6 +24,9 @@ FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./Ambev.DeveloperEvaluation.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
+# Run EF Migrations before starting the app
+ENTRYPOINT ["sh", "-c", "dotnet ef database update && dotnet Ambev.DeveloperEvaluation.WebApi.dll"]
+
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
