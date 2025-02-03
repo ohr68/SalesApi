@@ -2,6 +2,12 @@
 
 `READ CAREFULLY`
 
+## How to execute
+This describes how to execute the project.
+
+See [How to Execute](/.doc/execution-instructions.md)
+
+
 ## Instructions
 **The test below will have up to 7 calendar days to be delivered from the date of receipt of this manual.**
 
