@@ -3,7 +3,7 @@
 /// <summary>
 /// Response model for DeleteProduct operation
 /// </summary>
-public class DeleteProductResponse
+public class DeleteProductResult
 {
     /// <summary>
     /// Indicates whether the deletion was successful

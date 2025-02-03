@@ -3,7 +3,7 @@
 /// <summary>
 /// Response model for UpdateProduct operation
 /// </summary>
-public class UpdateProductResponse(bool success)
+public class UpdateProductResult(bool success)
 {
     /// <summary>
     /// Indicates whether the update was successful

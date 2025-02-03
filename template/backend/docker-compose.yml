@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   ambev.developerevaluation.webapi:
     container_name: ambev_developer_evaluation_webapi
@@ -24,6 +22,7 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
     networks:
       - ambev_developer_evaluation_network
+    command: sh -c "sleep 10 && dotnet ef database update && dotnet Ambev.DeveloperEvaluation.WebApi.dll"
 
   ambev.developerevaluation.database:
     container_name: ambev_developer_evaluation_database

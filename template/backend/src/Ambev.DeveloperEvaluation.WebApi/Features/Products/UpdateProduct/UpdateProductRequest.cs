@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.UpdateProduct;
 
-namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct;
-
-public class UpdateProductCommand : IRequest<UpdateProductResult>
+/// <summary>
+/// Represents a request to update an existing product in the system.
+/// </summary>
+public class UpdateProductRequest
 {
     /// <summary>
     /// Gets the product's unique id.
@@ -12,12 +13,12 @@ public class UpdateProductCommand : IRequest<UpdateProductResult>
     /// <summary>
     /// Gets the name of the product.
     /// </summary>
-    public string Title { get; private set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets the description of the product.
     /// </summary>
-    public string Description { get; private set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets the price of the product.

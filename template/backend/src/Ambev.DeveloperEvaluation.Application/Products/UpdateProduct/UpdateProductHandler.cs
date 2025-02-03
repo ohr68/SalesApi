@@ -9,7 +9,7 @@ namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct;
 /// <summary>
 /// Handler for processing UpdateProductCommand requests
 /// </summary>
-public class UpdateProductHandler : IRequestHandler<UpdateProductCommand, UpdateProductResponse>
+public class UpdateProductHandler : IRequestHandler<UpdateProductCommand, UpdateProductResult>
 {
     private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
@@ -31,7 +31,7 @@ public class UpdateProductHandler : IRequestHandler<UpdateProductCommand, Update
     /// <param name="command">The UpdateProduct command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The result of the update operation</returns>
-    public async Task<UpdateProductResponse> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
+    public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
     {
         var validator = new UpdateProductCommandValidator();
         var validationResult = await validator.ValidateAsync(command, cancellationToken);
@@ -46,6 +46,6 @@ public class UpdateProductHandler : IRequestHandler<UpdateProductCommand, Update
         
         var success = await _productRepository.UpdateAsync(_mapper.Map<Product>(command), cancellationToken);
 
-        return new UpdateProductResponse(success);
+        return new UpdateProductResult(success);
     }
 }

@@ -26,7 +26,7 @@ public class SaleItemConfiguration : IEntityTypeConfiguration<SaleItem>
             .IsRequired();
 
         builder.Property(si => si.Cancelled)
-            .HasColumnType("bit")
+            .HasColumnType("boolean")
             .IsRequired()
             .HasDefaultValue(false);
 

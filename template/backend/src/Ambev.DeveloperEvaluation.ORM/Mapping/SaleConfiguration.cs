@@ -35,7 +35,7 @@ public class SaleConfiguration : IEntityTypeConfiguration<Sale>
             .IsRequired();
         
         builder.Property(s => s.Cancelled)
-            .HasColumnType("bit")
+            .HasColumnType("boolean")
             .HasDefaultValue(false)
             .IsRequired();
 

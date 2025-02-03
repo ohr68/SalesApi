@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProduct;
 
-namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct;
-
-public class UpdateProductCommand : IRequest<UpdateProductResult>
+/// <summary>
+/// API response model for GetProduct operation
+/// </summary>
+public class GetProductResponse
 {
     /// <summary>
     /// Gets the product's unique id.
