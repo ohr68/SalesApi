@@ -32,8 +32,8 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                     Title = table.Column<string>(type: "varchar(100)", nullable: false),
                     Description = table.Column<string>(type: "varchar(300)", nullable: false),
                     Price = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
-                    Category = table.Column<string>(type: "varchar(150", nullable: false),
-                    Image = table.Column<string>(type: "varbinary(max)", nullable: false),
+                    Category = table.Column<string>(type: "varchar(150)", nullable: false),
+                    Image = table.Column<string>(type: "varchar(500)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
@@ -48,7 +48,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     Number = table.Column<int>(type: "int", nullable: false),
-                    MadeOn = table.Column<DateTime>(type: "datetime2(7)", nullable: false),
+                    MadeOn = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Customer = table.Column<string>(type: "varchar(100)", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "numeric(18,2)", nullable: false),

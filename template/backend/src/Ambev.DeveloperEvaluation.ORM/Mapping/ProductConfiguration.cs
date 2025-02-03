@@ -26,10 +26,10 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .IsRequired();
 
         builder.Property(p => p.Category)
-            .HasColumnType("varchar(150")
+            .HasColumnType("varchar(150)")
             .IsRequired();
 
         builder.Property(p => p.Image)
-            .HasColumnType("varbinary(max)");
+            .HasColumnType("varchar(500)");
     }
 }

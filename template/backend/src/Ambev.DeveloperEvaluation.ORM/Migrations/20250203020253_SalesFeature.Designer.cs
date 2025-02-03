@@ -34,7 +34,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
 
                     b.Property<string>("Category")
                         .IsRequired()
-                        .HasColumnType("varchar(150");
+                        .HasColumnType("varchar(150)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -45,7 +45,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
 
                     b.Property<string>("Image")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -83,7 +83,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("MadeOn")
-                        .HasColumnType("datetime2(7)");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");

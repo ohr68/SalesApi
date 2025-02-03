@@ -19,7 +19,7 @@ public class SaleConfiguration : IEntityTypeConfiguration<Sale>
             .IsRequired();
 
         builder.Property(s => s.MadeOn)
-            .HasColumnType("datetime2(7)")
+            .HasColumnType("timestamp with time zone")
             .IsRequired();
 
         builder.Property(s => s.Customer)
